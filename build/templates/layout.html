@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link href="/static/keyboard_5643.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>Keystroke: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="sidebar">
+                <nav class="bg-light border navbar navbar-light">
+                    <div class="left">
+                        <a class="navbar-brand" href="/">
+                            <span class="red">Key</span>
+                            <span class="blue">Stroke ⌨</span>
+                        </a>
+                        <br><br>
+                        <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse show" id="navbar">
+                            {% if session["user_id"] %}
+                                <ul class="navbar-nav me-auto mt-2">
+                                    <li class="nav-item"><a class="nav-link" href="/">Home Page</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/addfriends">Add friends</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/post">Post</a></li>
+                                </ul>
+                                <ul class="navbar-nav ms-auto mt-2">
+                                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                                </ul>
+                            {% else %}
+                                <ul class="navbar-nav ms-auto mt-2">
+                                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                                </ul>
+                            {% endif %}
+
+                            </div>
+
+                        </div>
+                        <div class="container-sm">
+                            {% if session["user_id"] %}
+                                <form action="/" method="post" autocomplete="off">
+                                    <br>
+                                    <label for="Search">Search:</label><br>
+                                    <input type="text" id="Search" name="Search"><br>
+                                    <label for="SearchBy">By:</label><br>
+
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="radioOption" id="radioPost" value="title" checked="checked"> Title
+                                        </label>
+                                        <label class="btn btn-success">
+                                            <input type="radio" name="radioOption" id="radioLanguage" value="language"> Language
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="radioOption" id="radioUser" value="username"> Username
+                                        </label>
+                                    </div>
+                                    <br><br>
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </nav>
+
+                </div>
+            <div class="main-content">
+
+                {% if get_flashed_messages() %}
+                <header>
+                    <div class="alert alert-primary mb-0 text-center" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                </header>
+                {% endif %}
+
+                <main class="container-fluid py-5 text-center">
+                    {% block main %}{% endblock %}
+                </main>
+            </div>
+        </div>
+
+        <!--https://www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
+        <button id="scrollToTopButton" class="btn btn-primary">Scroll to Top</button>
+        <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#scrollToTopButton').fadeIn();
+            } else {
+                $('#scrollToTopButton').fadeOut();
+            }
+            });
+
+            $('#scrollToTopButton').click(function() {
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+            });
+        });
+        </script>
+
+        <footer class="mb-5 small text-center text-muted">
+            Copyright: Zachary Root, 2023
+        </footer>
+    </body>
+</html>

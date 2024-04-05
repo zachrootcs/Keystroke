@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    post
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1 class="center">Create Post</h1>
+    </div>
+    <div class="container mt-5">
+        <form action="/post" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" id="post-title" name="title" required placeholder="Post title">
+                <br><br>
+                <input type="text" id="post-language" name="language" required placeholder="Programming language">
+                <br><br>
+                <textarea id="post-text" name="post-text" rows="4" cols="50" placeholder="Type Post Text:"></textarea>
+                <br><br>
+                <label for="image">Select an image to upload:</label><br>
+                <input type="file" class="form-control-file" name="image" id="image">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+    </div>
+    {% if image_url %}
+    <div class="mt-3">
+        <h2>Image Preview</h2>
+        <img src="{{ image_url }}" alt="Uploaded Image" width="300">
+    </div>
+    {% endif %}
+{% endblock %}

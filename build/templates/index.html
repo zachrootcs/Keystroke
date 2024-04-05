@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Recent Posts</h1>
+<div class="container">
+    <div class="section">
+
+        {% if search %}
+        <h2>Searching for posts with {{search_query}} as {{ search }}</h2>
+        {% endif %}
+
+        {% for post in posts %}
+        <div class="post card mb-3">
+            <div class="card-body">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <h4>Posted by: {{post.username}}</h4>
+                <h5>Post language: {{post.language}}</h5>
+                <p class="card-text">{{ post.bodytext }}</p>
+                <img src="/images/{{ post.id }}" alt="Uploaded Image" width="400" class="rounded img-fluid">
+                <p class="card-text">
+                    {% for comment in post.comments %}
+                        {{comment}}
+                        <br>
+                    {% endfor %}
+                </p>
+
+                <form action="/post/{{ post.id }}/comment" method="post">
+                    <div class="form-group">
+                        <label for="comment">Leave a Comment:</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="1" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

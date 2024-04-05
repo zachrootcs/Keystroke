@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+
+<div class="container mt-2">
+    <h1 class="left">Signed in as: {{user.username}}</h1>
+    <img src="/userpfp/{{user.id}}" alt="Profile Picture" width="50">
+</div>
+<div class="container mt-2">
+    <form action="/profile" method="post" enctype="multipart/form-data">
+        <div class="form-group left">
+            <label for="image">Change Profile Picture:</label>
+            <input type="file" class="form-control-file" name="image" id="image">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+        <br>
+    </form>
+</div>
+<div class="container mt-5">
+    <h2 class="left">Your posts:</h2>
+    <br>
+</div>
+<br>
+
+
+{% for post in posts %}
+<div class="post card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">{{ post.title }}</h3>
+        <h4>Posted by: {{post.username}}</h4>
+        <p class="card-text">{{ post.bodytext }}</p>
+        <img src="/images/{{ post.id }}" alt="Uploaded Image" width="400" class="rounded img-fluid">
+        <p class="card-text">
+            {% for comment in post.comments %}
+                {{comment}}
+                <br>
+            {% endfor %}
+        </p>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

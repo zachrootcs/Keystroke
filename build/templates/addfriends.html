@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Friends
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-2">
+        <h1 class="text-center">Add Friends</h1>
+    </div>
+    <br>
+    <form action="/addfriends" method="post" class="d-flex justify-content-center">
+        <div class="input-group mb-3">
+            <input autocomplete="off" autofocus class="form-control" id="search" name="search" placeholder="Search for friends" type="text">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    {% for user in users %}
+
+    <div class="container mt-2">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <img src="/userpfp/{{user.id}}" alt="Profile Picture" width="50" class="rounded img-thumbnail">
+            </div>
+            <div class="col">
+                <h3>{{user.username}}</h3>
+            </div>
+            {% if user.AlreadyFriends %}
+            <div class="col-auto">
+                <form action="/addfriends" method="post">
+                    <div class="form-group">
+                        <input type="submit" id="addfriend{{user.id}}" name="removeFriend" value="Remove Friend" class="btn btn-primary">
+                        <input type="hidden" name="removeuser_id" id="user_id" value="{{user.id}}">
+                    </div>
+                </form>
+            </div>
+            {% else %}
+            <div class="col-auto">
+                <form action="/addfriends" method="post">
+                    <div class="form-group">
+                        <input type="submit" id="addfriend{{user.id}}" name="addfriend" value="Add friend" class="btn btn-primary">
+                        <input type="hidden" name="user_id" id="user_id" value="{{user.id}}">
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

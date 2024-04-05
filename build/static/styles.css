@@ -1,0 +1,73 @@
+:root {
+    --background-color: #ffffff;
+    --post-background-color: #F8f3f3;
+}
+
+.post{
+    background-color: var(--post-background-color);
+}
+
+.container {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar {
+    width: 30%;
+    background-color: var(--background-color);
+    padding: 15px;
+}
+
+.main-content {
+    width: 70%;
+    padding: 20px;
+}
+.sidebar, .main-content {
+    box-sizing: border-box;
+}
+
+.main-content {
+    margin-left: 20px;
+}
+
+.main-content {
+    text-align: center;
+}
+
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.center
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+.left
+{
+    margin-left: 10px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#scrollToTopButton {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+}
