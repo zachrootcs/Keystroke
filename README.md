@@ -19,6 +19,3 @@ Directions for running my final project:
 15. Search for a certain person or add/remove friends on the list
 16. On the bottom left of the webpage, locate the search bar.
 17. Click any of the radio buttons and search anything on the website
-
-I was not able to upload the file to youtube for some reason but I have uploaded it to google drive link and made the link public
-https://drive.google.com/file/d/1VQC-TcrscQzC_CWrmjt1IbkIFeM85Qz-/view?usp=sharing
